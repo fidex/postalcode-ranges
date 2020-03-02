@@ -1,0 +1,86 @@
+{% load static %}
+<!doctype html>
+<html>
+ 
+<head>
+   <meta charset="utf-8">
+    <title>
+        {% block title %}
+        {{ page_title|default:"Untitled Page" }}
+       	{% endblock title %}
+     </title>
+     <link href="{% static "regex_builder/regex_builder.css" %}" rel="stylesheet" type="text/css">
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script
+	  	src="https://code.jquery.com/jquery-3.4.1.min.js"
+	  	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+	  	crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	</head>
+<body>
+	<div class="container text-center">
+		<div class="row">
+			<div class="col-sm-12">
+				<h1 class="mt-2"> Postal Ranges</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12 main-img">
+				<img src="{% static "regex_builder/pidgeon.JPG" %}">				
+			</div>			
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<p> Enter two postcodes below to generate a regex matching the range between	
+			</div>			 
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="text-center">
+					<label for="lower">Lower end: </label>
+		    		<input id="lower" type="text" name="lower" value="{{ lower }}">
+				</div>
+								
+			</div>
+			<div class="col-sm-12">
+				<div class="text-center">
+					<label for="upper">Upper end: </label>
+		    		<input id="upper" type="text" name="upper" value="{{ upper }}">					
+				</div>							
+			</div>			
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="text-center go-btn mt-2 mb-1">
+					<button type="button" class="btn btn-secondary">GO</button>
+				</div>				
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="result">
+					<textarea class="form-control" id="result-area" rows="3"></textarea>
+				</div>				
+			</div>
+		</div>	
+		<footer>
+			
+		</footer>	
+	</div>
+	<script type="text/javascript">
+
+		$(function() {
+
+			$( ".go-btn .btn" ).click(function() {
+				let lower = $( "#lower" ).val();	    
+				let upper = $( "#upper" ).val();
+
+				$.get(  `/regex/${lower}/${upper}`, function( data ) {
+				 	$( "#result-area" ).val(data);
+				 	console.log(data)
+				});
+			});
+		});
+	</script>
+</body>

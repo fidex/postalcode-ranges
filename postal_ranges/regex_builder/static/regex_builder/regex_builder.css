@@ -1,0 +1,22 @@
+.go-btn .btn{
+	width: 100%;
+}
+/*.go-btn{
+	margin-top: 20px;
+	margin-bottom: 5px;
+}
+*//* body { background-color: grey; }*/
+.main-img img{
+	width: 100%;
+	height: auto;
+
+}
+.container{
+	/*max-width: 780px !important;*/
+}
+@media screen and (max-width: 600px) {
+  .container{
+  		font-size: 30px;
+  	}  
+  
+}

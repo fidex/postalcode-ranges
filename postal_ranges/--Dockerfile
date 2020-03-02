@@ -1,0 +1,31 @@
+FROM python:3.8.0-alpine
+
+ENV APP_ROOT /src
+ENV CONFIG_ROOT /config
+
+# set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+RUN apk add --update bash
+RUN mkdir ${CONFIG_ROOT}
+COPY requirements.txt ${CONFIG_ROOT}/requirements.txt
+RUN pip install -r ${CONFIG_ROOT}/requirements.txt
+
+RUN mkdir ${APP_ROOT}
+# RUN mkdir ${APP_ROOT}/static
+WORKDIR ${APP_ROOT}
+
+
+ADD . ${APP_ROOT}
+COPY . ${APP_ROOT}
+
+# RUN pwd
+# RUN ls -lrt ${APP_ROOT}
+
+# RUN python manage.py migrate
+# RUN python manage.py collectstatic --clear
+# COPY ./entrypoint.sh /src/entrypoint.sh
+# RUN chmod +x /src/entrypoint.sh
+# ENTRYPOINT ["/src/entrypoint.sh"]
+ENTRYPOINT /src/entrypoint.sh

@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  app:
+    # build:
+    #   context: .
+    #   dockerfile: ./postal_ranges/Dockerfile
+    build: ./postal_ranges
+    
+    container_name: django
+    restart: always
+    
+    # command: ls -lrt ./postal_ranges
+    # command: pwd
+    command: python manage.py runserver 0.0.0.0:8000
+
+    # volumes:
+    #     - .:/usr/src/app/
+
+    ports:
+      - 8000:8000
+    env_file:
+      - ./.env.dev
