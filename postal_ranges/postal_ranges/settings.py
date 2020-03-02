@@ -107,11 +107,11 @@ LOGGING = {
             'class': 'logging.StreamHandler',
             'formatter': 'simple',
         },
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': BASE_DIR + '/logs/debug.log',
-        },
+        # 'file': {
+        #     'level': 'DEBUG',
+        #     'class': 'logging.FileHandler',
+        #     'filename': BASE_DIR + '/logs/debug.log',
+        # },
     },
     'formatters': {
         'simple': {
@@ -122,11 +122,13 @@ LOGGING = {
     },
     'loggers': {
         'django': {
-            'handlers': ['console', 'file'],
+            'handlers': ['console'],
+            # 'handlers': ['console', 'file'],
             'level': 'ERROR',
         },
         'test': {
-            'handlers': ['console', 'file'],
+            'handlers': ['console'],
+            # 'handlers': ['console', 'file'],
             'level': 'DEBUG'
         },
     },
