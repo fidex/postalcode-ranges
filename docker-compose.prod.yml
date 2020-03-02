@@ -12,7 +12,7 @@ services:
     command:
       "gunicorn --workers=1 --bind=0.0.0.0:8000 postal_ranges.wsgi:application"
     volumes:
-      - static_volume:/src/staticfiles
+      - static_volume:/src/static
 
   nginx:
     image: nginx:1.17
@@ -21,7 +21,7 @@ services:
       - "80:80"
     volumes:
       - ./nginx:/etc/nginx/conf.d
-      - static_volume:/src/staticfiles
+      - static_volume:/src/static
     depends_on:
       - app
 

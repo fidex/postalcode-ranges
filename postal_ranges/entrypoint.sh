@@ -9,12 +9,12 @@
 
 #     echo "PostgreSQL started"
 # fi
-ls -lrt /usr/src/app
+# ls -lrt /usr/src/app
 
 python manage.py flush --no-input
 python manage.py migrate
 python manage.py createcachetable
-python manage.py findstatic -v 3 regex_builder.css
+# python manage.py findstatic -v 3 regex_builder.css
 python manage.py collectstatic --no-input --clear
 # python manage.py runserver 0.0.0.0:8000
 exec "$@"
